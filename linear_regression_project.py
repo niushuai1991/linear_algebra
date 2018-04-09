@@ -222,7 +222,7 @@ def addScaledRow(M, r1, r2, scale):
         M[r1][i] = M[r1][i]+M[r2][i]*scale
 
 
-# In[27]:
+# In[18]:
 
 
 # 运行以下代码测试你的 addScaledRow 函数
@@ -318,20 +318,34 @@ printInMatrixFormat(Ab,padding=3,truncating=0)
 # 
 # 
 # $ Ab = \begin{bmatrix}
-#     0 & 0 & 0 & 0 \\
-#     0 & 0 & 0 & 0 \\
-#     0 & 0 & 0 & 0 \end{bmatrix}$
+#     2 & -8 & 3 & 1 \\
+#     -4 & -1 & -6 & 1 \\
+#     9 & 4 & -9 & 1 \end{bmatrix}$
+#     
+# 交换第三行和第一行  
+# $ --> \begin{bmatrix}
+#     9 & 4 & -9 & 1 \\
+#     -4 & -1 & -6 & 1 \\
+#     2 & -8 & 3 & 1 \end{bmatrix}$
+#     
+# $ --> \begin{bmatrix}
+#     1 & \frac{4}{9} & -1 & \frac{1}{9} \\
+#     0 & \frac{7}{9} & -10 & \frac{13}{9} \\
+#     0 & -\frac{80}{9} & 5 & \frac{7}{9} \end{bmatrix}$
 # 
-# $ --> \begin{bmatrix}
-#     0 & 0 & 0 & 0 \\
-#     0 & 0 & 0 & 0 \\
-#     0 & 0 & 0 & 0 \end{bmatrix}$
+# 交换第三行和第二行
 #     
 # $ --> \begin{bmatrix}
-#     0 & 0 & 0 & 0 \\
-#     0 & 0 & 0 & 0 \\
-#     0 & 0 & 0 & 0 \end{bmatrix}$
+#     1 & \frac{4}{9} & -1 & \frac{1}{9} \\
+#     0 & -\frac{80}{9} & 5 & \frac{7}{9} \\
+#     0 & \frac{7}{9} & -10 & \frac{13}{9} \end{bmatrix}$
 #     
+# $ --> \begin{bmatrix}
+#     1 & 0 & -\frac{19}{20} & \frac{3}{20} \\
+#     0 & 1 & -\frac{9}{16} & -\frac{7}{80} \\
+#     0 & 0 & -\frac{153}{16} & \frac{12}{80} \end{bmatrix}$
+#     
+# 
 # $...$
 
 # In[20]:
@@ -374,7 +388,7 @@ printInMatrixFormat(Ab,padding=3,truncating=0)
 
 # ### 2.3.3 实现 Gaussian Jordan 消元法
 
-# In[39]:
+# In[21]:
 
 
 # TODO 实现 Gaussain Jordan 方法求解 Ax = b
@@ -394,22 +408,16 @@ printInMatrixFormat(Ab,padding=3,truncating=0)
 def gj_Solve(A, b, decPts=4, epsilon = 1.0e-16):
     if len(A) != len(b):
         return None
-    # 构造增广矩阵
     mat = augmentMatrix(A,b)
     row_num, col_num = shape(mat)
-    # Gaussain Jordan
     for c in range(row_num):
-        # TODO 使用第一个行变换，将绝对值最大值所在行交换到当前行 
         column = [abs(mat[x][c]) for x in range(c,row_num)]
         abs_max_val = max(column)
         max_row = column.index(abs_max_val) + c
-        # TODO 判断是否为奇异矩阵
         if abs_max_val < epsilon:
             return None
         swapRows(mat, c, max_row)
-        # 使用第二个行变换，将列c的对角线元素缩放为1
         scaleRow(mat,c,1./mat[c][c])
-        # TODO 多次使用第三个行变换，将列c的其它元素消为0
         for row in range(row_num):
             if row == c:
                 continue
@@ -417,7 +425,7 @@ def gj_Solve(A, b, decPts=4, epsilon = 1.0e-16):
     return [[x[-1]] for x in mat]
 
 
-# In[40]:
+# In[22]:
 
 
 # 运行以下代码测试你的 gj_Solve 函数
@@ -479,8 +487,8 @@ plt.show()
 
 
 #TODO 请选择最适合的直线 y = mx + b
-m1 = 0
-b1 = 0
+m1 = 2
+b1 = 13.215
 
 # 不要修改这里！
 plt.xlim((-5,5))
@@ -506,10 +514,13 @@ plt.show()
 
 
 # TODO 实现以下函数并输出所选直线的MSE
-
 def calculateMSE(X,Y,m,b):
-    return 0
-
+    sum = 0
+    for i in range(len(X)):
+        sum += (Y[i]- m*X[i] - b)**2
+    return sum/len(X)
+    
+#print(range(len(X)))
 print(calculateMSE(X,Y,m1,b1))
 
 
@@ -630,7 +641,13 @@ print(calculateMSE(X,Y,m1,b1))
 返回：m，b 浮点数
 '''
 def linearRegression(X,Y):
-    return None,None
+    Xmat = [[x,1] for x in X]
+    Xmat_T = transpose(Xmat)
+    Y_vec = [[y] for y in Y]
+    A = matxMultiply(Xmat_T, Xmat)
+    b = matxMultiply(Xmat_T, Y_vec)
+    mb = gj_Solve(A,b)
+    return mb[0][0],mb[1][0]
 
 m2,b2 = linearRegression(X,Y)
 assert isinstance(m2,float),"m is not a float"
@@ -638,10 +655,11 @@ assert isinstance(b2,float),"b is not a float"
 print(m2,b2)
 
 
+
 # 你求得的回归结果是什么？
 # 请使用运行以下代码将它画出来。
 
-# In[ ]:
+# In[27]:
 
 
 # 请不要修改下面的代码
@@ -659,7 +677,7 @@ plt.show()
 
 # 你求得的回归结果对当前数据集的MSE是多少？
 
-# In[ ]:
+# In[28]:
 
 
 print(calculateMSE(X,Y,m2,b2))
