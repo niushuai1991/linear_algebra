@@ -372,19 +372,37 @@ printInMatrixFormat(Ab,padding=3,truncating=0)
 # 
 # 
 # $ Ab = \begin{bmatrix}
-#     0 & 0 & 0 & 0 \\
-#     0 & 0 & 0 & 0 \\
-#     0 & 0 & 0 & 0 \end{bmatrix}$
+#     6 & 4 & -6 & 1 \\
+#     4 & 3 & -5 & 1 \\
+#     7 & 5 & -8 & 1 \end{bmatrix}$
+#  
+# 交换第3行和第1行
 # 
 # $ --> \begin{bmatrix}
-#     0 & 0 & 0 & 0 \\
-#     0 & 0 & 0 & 0 \\
-#     0 & 0 & 0 & 0 \end{bmatrix}$
+#     7 & 5 & -8 & 1 \\
+#     4 & 3 & -5 & 1 \\
+#     6 & 4 & -6 & 1 \end{bmatrix}$
 #     
+# 消元
+# 
 # $ --> \begin{bmatrix}
-#     0 & 0 & 0 & 0 \\
-#     0 & 0 & 0 & 0 \\
-#     0 & 0 & 0 & 0 \end{bmatrix}$
+#     1 & \frac{5}{7} & -\frac{8}{7} & \frac{1}{7} \\
+#     0 & \frac{1}{7} & -\frac{3}{7} & \frac{3}{7} \\
+#     0 & -\frac{2}{7} & \frac{6}{7} & \frac{1}{7} \end{bmatrix}$
+# 
+# 交换第3行和第2行
+# 
+# $ --> \begin{bmatrix}
+#     1 & \frac{5}{7} & -\frac{8}{7} & \frac{1}{7} \\
+#     0 & -\frac{2}{7} & \frac{6}{7} & \frac{1}{7} \\
+#     0 & \frac{1}{7} & -\frac{3}{7} & \frac{3}{7} \end{bmatrix}$
+#     
+# 消元
+# 
+# $ --> \begin{bmatrix}
+#     1 & 0 & 1 & \frac{1}{2} \\
+#     0 & 1 & -3 & -\frac{1}{2} \\
+#     0 & 0 & 0 & \frac{1}{2} \end{bmatrix}$
 #     
 # $...$
 

@@ -11906,7 +11906,7 @@ div#notebook {
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>.
 ----------------------------------------------------------------------
-Ran 1 test in 0.002s
+Ran 1 test in 0.004s
 
 OK
 </pre>
@@ -11968,7 +11968,7 @@ OK
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>.
 ----------------------------------------------------------------------
-Ran 1 test in 0.068s
+Ran 1 test in 0.055s
 
 OK
 </pre>
@@ -12029,7 +12029,7 @@ OK
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>.
 ----------------------------------------------------------------------
-Ran 1 test in 0.010s
+Ran 1 test in 0.009s
 
 OK
 </pre>
@@ -12095,7 +12095,7 @@ OK
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>.
 ----------------------------------------------------------------------
-Ran 1 test in 0.180s
+Ran 1 test in 0.104s
 
 OK
 </pre>
@@ -12174,7 +12174,7 @@ OK
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>.
 ----------------------------------------------------------------------
-Ran 1 test in 0.009s
+Ran 1 test in 0.007s
 
 OK
 </pre>
@@ -12239,7 +12239,7 @@ OK
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>.
 ----------------------------------------------------------------------
-Ran 1 test in 0.005s
+Ran 1 test in 0.004s
 
 OK
 </pre>
@@ -12295,7 +12295,7 @@ OK
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>.
 ----------------------------------------------------------------------
-Ran 1 test in 0.006s
+Ran 1 test in 0.003s
 
 OK
 </pre>
@@ -12348,7 +12348,7 @@ OK
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>.
 ----------------------------------------------------------------------
-Ran 1 test in 0.005s
+Ran 1 test in 0.003s
 
 OK
 </pre>
@@ -12580,17 +12580,29 @@ $ --&gt; \begin{bmatrix}
 </li>
 </ol>
 <p>$ Ab = \begin{bmatrix}
-    0 &amp; 0 &amp; 0 &amp; 0 \\
-    0 &amp; 0 &amp; 0 &amp; 0 \\
-    0 &amp; 0 &amp; 0 &amp; 0 \end{bmatrix}$</p>
+    6 &amp; 4 &amp; -6 &amp; 1 \\
+    4 &amp; 3 &amp; -5 &amp; 1 \\
+    7 &amp; 5 &amp; -8 &amp; 1 \end{bmatrix}$</p>
+<p>交换第3行和第1行</p>
 <p>$ --&gt; \begin{bmatrix}
-    0 &amp; 0 &amp; 0 &amp; 0 \\
-    0 &amp; 0 &amp; 0 &amp; 0 \\
-    0 &amp; 0 &amp; 0 &amp; 0 \end{bmatrix}$</p>
+    7 &amp; 5 &amp; -8 &amp; 1 \\
+    4 &amp; 3 &amp; -5 &amp; 1 \\
+    6 &amp; 4 &amp; -6 &amp; 1 \end{bmatrix}$</p>
+<p>消元</p>
 <p>$ --&gt; \begin{bmatrix}
-    0 &amp; 0 &amp; 0 &amp; 0 \\
-    0 &amp; 0 &amp; 0 &amp; 0 \\
-    0 &amp; 0 &amp; 0 &amp; 0 \end{bmatrix}$</p>
+    1 &amp; \frac{5}{7} &amp; -\frac{8}{7} &amp; \frac{1}{7} \\
+    0 &amp; \frac{1}{7} &amp; -\frac{3}{7} &amp; \frac{3}{7} \\
+    0 &amp; -\frac{2}{7} &amp; \frac{6}{7} &amp; \frac{1}{7} \end{bmatrix}$</p>
+<p>交换第3行和第2行</p>
+<p>$ --&gt; \begin{bmatrix}
+    1 &amp; \frac{5}{7} &amp; -\frac{8}{7} &amp; \frac{1}{7} \\
+    0 &amp; -\frac{2}{7} &amp; \frac{6}{7} &amp; \frac{1}{7} \\
+    0 &amp; \frac{1}{7} &amp; -\frac{3}{7} &amp; \frac{3}{7} \end{bmatrix}$</p>
+<p>消元</p>
+<p>$ --&gt; \begin{bmatrix}
+    1 &amp; 0 &amp; 1 &amp; \frac{1}{2} \\
+    0 &amp; 1 &amp; -3 &amp; -\frac{1}{2} \\
+    0 &amp; 0 &amp; 0 &amp; \frac{1}{2} \end{bmatrix}$</p>
 <p>$...$</p>
 
 </div>
@@ -12673,7 +12685,7 @@ $ --&gt; \begin{bmatrix}
 <div class="output_subarea output_stream output_stderr output_text">
 <pre>.
 ----------------------------------------------------------------------
-Ran 1 test in 4.741s
+Ran 1 test in 3.828s
 
 OK
 </pre>
