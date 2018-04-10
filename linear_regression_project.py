@@ -332,21 +332,23 @@ printInMatrixFormat(Ab,padding=3,truncating=0)
 #     1 & \frac{4}{9} & -1 & \frac{1}{9} \\
 #     0 & \frac{7}{9} & -10 & \frac{13}{9} \\
 #     0 & -\frac{80}{9} & 5 & \frac{7}{9} \end{bmatrix}$
-# 
-# 交换第三行和第二行
 #     
+# 交换第三行和第二行  
 # $ --> \begin{bmatrix}
 #     1 & \frac{4}{9} & -1 & \frac{1}{9} \\
 #     0 & -\frac{80}{9} & 5 & \frac{7}{9} \\
 #     0 & \frac{7}{9} & -10 & \frac{13}{9} \end{bmatrix}$
-#     
-# $ --> \begin{bmatrix}
-#     1 & 0 & -\frac{19}{20} & \frac{3}{20} \\
-#     0 & 1 & -\frac{9}{16} & -\frac{7}{80} \\
-#     0 & 0 & -\frac{153}{16} & \frac{12}{80} \end{bmatrix}$
-#     
 # 
-# $...$
+# $ --> \begin{bmatrix}
+#     1 & 0 & -\frac{3}{4} & \frac{3}{20} \\
+#     0 & 1 & -\frac{9}{16} & -\frac{7}{80} \\
+#     0 & 0 & -\frac{143}{16} & \frac{121}{80} \end{bmatrix}$
+# 
+# $ --> \begin{bmatrix}
+#     1 & 0 & 0 & -\frac{1}{30} \\
+#     0 & 1 & 0 & -\frac{19}{104} \\
+#     0 & 0 & 1 & -\frac{11}{65} \end{bmatrix}$
+# 
 
 # In[20]:
 
@@ -515,11 +517,8 @@ plt.show()
 
 # TODO 实现以下函数并输出所选直线的MSE
 def calculateMSE(X,Y,m,b):
-    sum = 0
-    for i in range(len(X)):
-        sum += (Y[i]- m*X[i] - b)**2
-    return sum/len(X)
-    
+    se = sum([(y - m * x - b)**2 for x, y in zip(X, Y)])
+    return se / len(X)
 #print(range(len(X)))
 print(calculateMSE(X,Y,m1,b1))
 
